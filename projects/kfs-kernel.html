@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KFS-1 — a tiny x86 kernel — Ralph Balazs</title>
+  <meta name="description" content="A bootable 32-bit x86 kernel in freestanding C and NASM assembly — GRUB/Multiboot boot, VGA text driver, PS/2 keyboard driver, libc-free kprintf.">
+  <!-- TODO: canonical/og:url use the domain recommended in PLAN.md §8; confirm once the repo is renamed and deployed. -->
+  <link rel="canonical" href="https://balazsralph.github.io/projects/kfs-kernel.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ralph Balazs">
+  <meta property="og:title" content="KFS-1 — a tiny x86 kernel — Ralph Balazs">
+  <meta property="og:description" content="A bootable 32-bit x86 kernel in freestanding C and NASM assembly — GRUB/Multiboot boot, VGA text driver, PS/2 keyboard driver, libc-free kprintf.">
+  <meta property="og:image" content="https://balazsralph.github.io/assets/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://balazsralph.github.io/projects/kfs-kernel.html">
+  <meta property="og:locale" content="en_US">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="KFS-1 — a tiny x86 kernel — Ralph Balazs">
+  <meta name="twitter:description" content="A bootable 32-bit x86 kernel in freestanding C and NASM assembly — GRUB/Multiboot boot, VGA text driver, PS/2 keyboard driver, libc-free kprintf.">
+  <meta name="twitter:image" content="https://balazsralph.github.io/assets/img/og.png">
+
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a href="../index.html" class="site-header__brand">rb</a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul class="site-nav__links">
+          <li><a href="../index.html#projects">Projects</a></li>
+          <li><a href="../index.html#skills">Skills</a></li>
+          <li><a href="../index.html#experience">Experience</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+        <a class="site-nav__github" href="https://github.com/balazsralph" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        </a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container">
+
+      <a class="case-study__back" href="../index.html#projects">&larr; Back to all projects</a>
+
+      <header class="case-study__header">
+        <span class="section-label">kfs-kernel</span>
+        <div class="tags">
+          <span class="tag tag--systems">Systems</span>
+          <span class="tag tag--systems">Low-level</span>
+          <span class="tag tag--systems">C/ASM</span>
+        </div>
+        <h1>KFS-1 — a tiny x86 kernel</h1>
+        <p class="case-study__one-liner">A bootable 32-bit x86 kernel in freestanding C and NASM assembly — GRUB/Multiboot boot, VGA text driver, PS/2 keyboard driver, libc-free kprintf.</p>
+
+        <div class="case-study__meta">
+          <dl>
+            <dt>Context</dt>
+            <dd>42 school project</dd>
+          </dl>
+          <dl>
+            <dt>Team</dt>
+            <dd>Pair project</dd>
+          </dl>
+          <dl>
+            <dt>Status</dt>
+            <dd>My part: the PS/2 keyboard driver</dd>
+          </dl>
+          <dl>
+            <dt>Stack</dt>
+            <dd>C (freestanding) · NASM · Makefile · QEMU/GDB · GRUB</dd>
+          </dl>
+          <dl>
+            <dt>Links</dt>
+            <dd>
+              <a href="https://github.com/balazsralph/kfs-1" target="_blank" rel="noopener noreferrer">kfs-1</a>
+              <span class="todo">[TODO: verify repo is public]</span>
+            </dd>
+          </dl>
+        </div>
+      </header>
+
+      <div class="case-study__body">
+
+        <section class="reveal" aria-labelledby="why-heading">
+          <h2 id="why-heading">Why write a kernel</h2>
+          <p>KFS is 42's kernel series: a progressive project that starts from nothing — no OS, no libc, no safety net — and builds up an x86 kernel piece by piece. KFS-1, the level covered here, is a pair project focused on getting a minimal kernel to boot and talk to the keyboard and screen.</p>
+        </section>
+
+        <section class="reveal" aria-labelledby="boot-heading">
+          <h2 id="boot-heading">Boot path</h2>
+          <p>The kernel boots through GRUB via a Multiboot header, hands off from assembly to C, and links with a custom <code>ld</code> linker script. It's compiled <code>-ffreestanding -nostdlib</code> — no host OS, no standard library — and tested under QEMU with remote GDB attached for debugging.</p>
+        </section>
+
+        <section class="reveal" aria-labelledby="keyboard-heading">
+          <h2 id="keyboard-heading">My part: the keyboard driver</h2>
+          <p>My main contribution is the PS/2 keyboard driver: reading the x86 I/O ports directly with <code>inb</code> (ports 0x60/0x64), decoding make/break scancodes, and handling modifier state — Shift, Caps Lock — as well as extended keys like arrows and Delete. The kernel also ships a VGA text-mode driver (scrolling, hardware cursor, line editing) and a minimal <code>kprintf</code>, which I built together with my teammate, who was the main author of the base kernel and its bonus features.</p>
+        </section>
+
+        <section class="reveal" aria-labelledby="debugging-heading">
+          <h2 id="debugging-heading">Debugging bare metal</h2>
+          <p>With no OS underneath to catch you, debugging happens through QEMU running the kernel image with GDB attached remotely — stepping through boot code and driver logic at the instruction level when something goes wrong.</p>
+        </section>
+
+        <section class="reveal" aria-labelledby="scope-heading">
+          <h2 id="scope-heading">Honest scope</h2>
+          <p>KFS-1 is deliberately limited: display and keyboard I/O, nothing more. There's no virtual memory and no scheduler yet — those come in later levels of the KFS series. This write-up covers exactly what was built at this stage, not the full series.</p>
+        </section>
+
+      </div>
+
+      <nav class="case-study__nav" aria-label="Project navigation">
+        <a href="chess-robot.html">&larr; Autonomous Chess Robot</a>
+        <a href="gitops-pipeline.html">Next: Kubernetes GitOps Pipeline &rarr;</a>
+      </nav>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 Ralph Balazs — built by hand, no framework.</span>
+      <a href="https://github.com/balazsralph/Portfolio" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
