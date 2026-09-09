@@ -11,16 +11,18 @@
   <meta property="og:site_name" content="Ralph Balazs">
   <meta property="og:title" content="Autonomous Chess Robot — Ralph Balazs">
   <meta property="og:description" content="Teaching a SO-101 robotic arm to play chess: teleoperation, imitation-learning datasets, YOLO-based perception and an LLM agent for decision-making.">
-  <meta property="og:image" content="https://balazsralph.github.io/assets/img/og.png">
+  <meta property="og:image" content="https://balazsralph.github.io/assets/img/og-chess-robot.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The 42AI SO-101 leader arm in orange beside the black and blue follower arm on a workbench">
   <meta property="og:url" content="https://balazsralph.github.io/projects/chess-robot.html">
   <meta property="og:locale" content="en_US">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Autonomous Chess Robot — Ralph Balazs">
   <meta name="twitter:description" content="Teaching a SO-101 robotic arm to play chess: teleoperation, imitation-learning datasets, YOLO-based perception and an LLM agent for decision-making.">
-  <meta name="twitter:image" content="https://balazsralph.github.io/assets/img/og.png">
+  <meta name="twitter:image" content="https://balazsralph.github.io/assets/img/og-chess-robot.jpg">
+  <meta name="twitter:image:alt" content="The 42AI SO-101 leader arm in orange beside the black and blue follower arm on a workbench">
 
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../assets/css/main.css">
@@ -82,12 +84,19 @@
           </dl>
           <dl>
             <dt>Links</dt>
-            <dd>
+            <dd class="case-study__links">
               <a href="https://github.com/balazsralph/ComputerVision" target="_blank" rel="noopener noreferrer">ComputerVision (vision module)</a>
               <span>Main repo private (42AI organisation)</span>
             </dd>
           </dl>
         </div>
+        <figure class="figure case-study__figure">
+          <picture>
+            <source srcset="../assets/img/robot/so101-pair.webp" type="image/webp">
+            <img src="../assets/img/robot/so101-pair.jpg" alt="The SO-101 leader arm in orange, labelled 42AI, next to the black and blue follower arm on a workbench." width="1600" height="1202" loading="eager" decoding="async" fetchpriority="high">
+          </picture>
+          <figcaption>the 42AI SO-101 pair — the orange leader arm drives the black follower during teleoperation</figcaption>
+        </figure>
       </header>
 
       <div class="case-study__body">
@@ -100,6 +109,13 @@
         <section class="reveal" aria-labelledby="hardware-heading">
           <h2 id="hardware-heading">Hardware</h2>
           <p>The arm is a SO-101 leader/follower pair, calibrated and teleoperated with LeRobot (Hugging Face). Teleoperation lets us record demonstration datasets by driving the follower arm through the leader arm, which is the raw material for the imitation-learning policies below. Onboard compute is an NVIDIA Jetson Orin NX, which I installed and configured to drive the arm.</p>
+          <figure class="figure case-study__figure">
+            <picture>
+              <source srcset="../assets/img/robot/so101-follower-detail.webp" type="image/webp">
+              <img src="../assets/img/robot/so101-follower-detail.jpg" alt="Close-up of the SO-101 follower arm's base and shoulder joints, showing the servo housings and their wiring." width="1200" height="901" loading="lazy" decoding="async">
+            </picture>
+            <figcaption>follower base and shoulder joints</figcaption>
+          </figure>
         </section>
 
         <section class="reveal" aria-labelledby="perception-heading">
