@@ -361,6 +361,19 @@ section:first-of-type {
   margin-top: var(--space-sm);
 }
 
+.hero__about-now {
+  font-size: var(--text-sm);
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+.mono-label::after {
+  content: ":";
+}
+
 /* --- Buttons / links ------------------------------------------------------ */
 
 .btn {
@@ -627,6 +640,11 @@ section:first-of-type {
 .mini-card__link:hover,
 .mini-card__link:focus-visible {
   color: var(--accent-hover);
+}
+
+/* Non-clickable note in the link slot (e.g. no public repo) */
+.mini-card__link--muted {
+  color: var(--text-muted);
 }
 
 .mini-card[hidden] {
