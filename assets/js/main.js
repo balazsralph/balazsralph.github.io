@@ -47,6 +47,36 @@
     });
   }
 
+  // Videos play only while visible, and never when the visitor asked for less
+  // motion. Without JS they keep their controls and stay paused.
+  var autoplayVideos = document.querySelectorAll('video.js-autoplay-in-view');
+  var prefersReducedMotion = window.matchMedia
+    ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    : false;
+
+  if (autoplayVideos.length && !prefersReducedMotion && 'IntersectionObserver' in window) {
+    var videoObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var video = entry.target;
+
+        if (entry.isIntersecting) {
+          var attempt = video.play();
+
+          // Browsers reject autoplay in some contexts; the controls still work.
+          if (attempt && typeof attempt.catch === 'function') {
+            attempt.catch(function () {});
+          }
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.4 });
+
+    autoplayVideos.forEach(function (video) {
+      videoObserver.observe(video);
+    });
+  }
+
   var filterButtons = document.querySelectorAll('.filter-btn');
   var miniCards = document.querySelectorAll('.mini-card');
 

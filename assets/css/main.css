@@ -576,9 +576,12 @@ section:first-of-type {
   overflow: hidden;
 }
 
-.figure img {
+.figure img,
+.figure video {
+  display: block;
   width: 100%;
   height: auto;
+  background: var(--bg);
 }
 
 .figure figcaption {
